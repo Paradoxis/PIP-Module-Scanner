@@ -38,11 +38,22 @@ You can write the output of the script to a file by using the `-o` or `--out` ar
 ## Integrating the code in your project
 You can easily integrate the scanner code in your own project so you can get the output of the scanner yourself or modify the class to suit your own needs. To do this, you can use it like so:
 
+    from pip_module_scanner.scanner import Scanner
+
+    scanner = Scanner()
+    scanner.run()
+   
+    # do whatever you want with the results here
+    # example:
+    for lib in scanner.libraries_found:
+        print ("Found module %s at version %s" % (lib.key, lib.version))
+        
+Specifying a path would work like so, make sure to also import the `ScannerException` as it will check if the path you specified is actually a real path:
+
     from pip_module_scanner.scanner import Scanner, ScannerException
     
-    
     try:
-       scanner = Scanner()
+       scanner = Scanner(path="~/projects/my-awesome-project/")
        scanner.run()
        
        # do whatever you want with the results here
@@ -52,6 +63,12 @@ You can easily integrate the scanner code in your own project so you can get the
        
     except ScannerException as e:
         print("Error: %s" % str(e))
+        
+For the one-liner junkies out there (like me) you can also get all libraries with this nifty little one-liner (I'm so considerate)
+
+    from pip_module_scanner.scanner import Scanner
+
+    libs = Scanner().run().libraries_found # Isn't it beautiful?
         
 ## Class definitions
 
