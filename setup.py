@@ -1,9 +1,9 @@
-from distutils.core import setup
+from setuptools import setup
 
 setup(
     name='pip-module-scanner',
     packages=['pip_module_scanner'],
-    version='0.1',
+    version='0.2',
     description='Scans your Python project for all installed third party pip libraries and generates a requirements.txt based output',
     author='Luke Paris (Paradoxis)',
     author_email='luke@paradoxis.nl',
