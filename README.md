@@ -1,5 +1,5 @@
 # Python-Third-Party-Module-Scanner
-Scans your Python project for all installed third party pip libraries and generates a requirements.txt based output.
+Scans your Python project for all installed third party pip libraries that are used and generates a requirements.txt based output.
 
 ## Installation
 Installing the scanner is easy, either clone the repository and run the script or install it via pip like so:
