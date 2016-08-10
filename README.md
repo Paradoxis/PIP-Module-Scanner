@@ -1,14 +1,12 @@
-Python-Third-Party-Module-Scanner
-================================
+# Python-Third-Party-Module-Scanner
 Scans your Python project for all installed third party pip libraries and generates a requirements.txt based output.
 
-# Installation
+## Installation
 Installing the scanner is easy, either clone the repository and run the script or install it via pip like so:
 
     $ pip install pip-module-scanner
 
-Usage
------
+## Usage
 Using the scanner is incredibly simple. Open a terminal and navigate to your project folder, run the script and watch magic happen before your eyes. Example:
 
     $ cd ~/projects/my-awesome-project/
@@ -18,8 +16,7 @@ Using the scanner is incredibly simple. Open a terminal and navigate to your pro
     baz==0.0.1
     
 
-Specifying a custom path
------------------------
+### Specifying a custom path
 You can specify a custom path in which you want to run the script with the `-p` or `--path` argument. Example:
 
     $ pip-module-scanner --path ~/projects/my-awesome-project/
@@ -28,8 +25,7 @@ You can specify a custom path in which you want to run the script with the `-p` 
     baz==0.0.1
 
 
-Writing the output to a file
-----------------------------
+### Writing the output to a file
 You can write the output of the script to a file by using the `-o` or `--out` argument. Example:
 
     $ cd ~/projects/my-awesome-project/
@@ -39,9 +35,42 @@ You can write the output of the script to a file by using the `-o` or `--out` ar
     bar==2.1.0
     baz==0.0.1
 
+## Integrating the code in your project
+You can easily integrate the scanner code in your own project so you can get the output of the scanner yourself or modify the class to suit your own needs. To do this, you can use it like so:
 
-License
----------
+    from pip_module_scanner.scanner import Scanner, ScannerException
+    
+    
+    try:
+       scanner = Scanner()
+       scanner.run()
+       
+       # do whatever you want with the results here
+       # example:
+       for lib in scanner.libraries_found:
+           print ("Found module %s at version %s" % (lib.key, lib.version))
+       
+    except ScannerException as e:
+        print("Error: %s" % str(e))
+        
+## Class definitions
+
+### pip_module_scanner.scanner.Scanner([string path [, string output]])
+
+| Method              | Argument | Type    | Required | Description                                          |
+| ------------------- | -------- | ------- | -------- | ---------------------------------------------------- |
+| \_\_init\_\_        | path     | string  | no       | Directory to recursively scan through, defaults to current working directory. |
+|                     | output   | string  | no       | Output path to write the resutlts from `output()` to |
+| run                 |          |         |          | Runs the scan, output will be stored in `libraries_found` |
+| output              |          |         |          | Writes the output to the console or a path specified in the constructor |
+
+
+| Property            | Type                                                | Description  |
+| ------------------- | --------------------------------------------------- | ------------ |
+| libraries_found     | list<pip._vendor.pkg_resources.EggInfoDistribution> | List of all found pip libraries in your project, result from `Scanner.run()`.
+
+
+## License
 MIT License
 
 Copyright (c) 2016 Luke Paris
