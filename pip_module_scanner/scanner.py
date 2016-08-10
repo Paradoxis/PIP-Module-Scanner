@@ -11,7 +11,7 @@ class Scanner:
     third party libraries for use in
     """
 
-    def __init__(self, options):
+    def __init__(self, path=os.getcwd(), output=None):
 
         # Compiled import regular expression
         self.import_statement = re.compile(r'(?:from|import) ([a-zA-Z0-9]+)(?:.*)')
@@ -22,32 +22,34 @@ class Scanner:
         self.libraries_found = []
 
         # ArgumentParser options
-        self.options = options
+        self.path = path
+        self.path_output = output
 
     def run(self):
         """
         Runs the scanner
-        :return: void
+        :return: self
         """
 
         # Normalize path
-        self.options.path = os.path.expanduser(self.options.path)
+        self.path = os.path.expanduser(self.path)
 
         # Start scanning
-        if os.path.isdir(self.options.path):
-            self.search_script_directory(self.options.path)
+        if os.path.isdir(self.path):
+            self.search_script_directory(self.path)
+            return self
         else:
-            raise ScannerException("Unknown directory: %s" % self.options.path)
+            raise ScannerException("Unknown directory: %s" % self.path)
 
     def output(self):
         """
         Output the results to either STDOUT or
         :return:
         """
-        if not self.options.out:
+        if not self.path_output:
             self.output_to_fd(sys.stdout)
         else:
-            with open(self.options.out, "w") as out:
+            with open(self.path_output, "w") as out:
                 self.output_to_fd(out)
 
     def output_to_fd(self, fd):
