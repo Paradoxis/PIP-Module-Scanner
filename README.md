@@ -4,72 +4,84 @@ Scans your Python project for all installed third party pip libraries and genera
 ## Installation
 Installing the scanner is easy, either clone the repository and run the script or install it via pip like so:
 
-    $ pip install pip-module-scanner
+```shell
+$ pip install pip-module-scanner
+```
 
 ## Usage
 Using the scanner is incredibly simple. Open a terminal and navigate to your project folder, run the script and watch magic happen before your eyes. Example:
 
-    $ cd ~/projects/my-awesome-project/
-    $ pip-module-scanner
-    foo==1.0.0
-    bar==2.1.0
-    baz==0.0.1
-    
+```shell
+$ cd ~/projects/my-awesome-project/
+$ pip-module-scanner
+foo==1.0.0
+bar==2.1.0
+baz==0.0.1
+```    
 
 ### Specifying a custom path
 You can specify a custom path in which you want to run the script with the `-p` or `--path` argument. Example:
 
-    $ pip-module-scanner --path ~/projects/my-awesome-project/
-    foo==1.0.0 
-    bar==2.1.0
-    baz==0.0.1
-
+```shell
+$ pip-module-scanner --path ~/projects/my-awesome-project/
+foo==1.0.0 
+bar==2.1.0
+baz==0.0.1
+```
 
 ### Writing the output to a file
 You can write the output of the script to a file by using the `-o` or `--out` argument. Example:
 
-    $ cd ~/projects/my-awesome-project/
-    $ pip-module-scanner -o requirements.txt
-    $ cat requirements.txt
-    foo==1.0.0
-    bar==2.1.0
-    baz==0.0.1
+```python
+$ cd ~/projects/my-awesome-project/
+$ pip-module-scanner -o requirements.txt
+$ cat requirements.txt
+foo==1.0.0
+bar==2.1.0
+baz==0.0.1
+```
 
 ## Integrating the code in your project
 You can easily integrate the scanner code in your own project so you can get the output of the scanner yourself or modify the class to suit your own needs. To do this, you can use it like so:
 
-    from pip_module_scanner.scanner import Scanner
+```python
+from pip_module_scanner.scanner import Scanner
 
-    scanner = Scanner()
-    scanner.run()
-   
-    # do whatever you want with the results here
-    # example:
-    for lib in scanner.libraries_found:
-        print ("Found module %s at version %s" % (lib.key, lib.version))
-        
+scanner = Scanner()
+scanner.run()
+
+# do whatever you want with the results here
+# example:
+for lib in scanner.libraries_found:
+    print ("Found module %s at version %s" % (lib.key, lib.version))
+```
+
 Specifying a path would work like so, make sure to also import the `ScannerException` as it will check if the path you specified is actually a real path:
 
-    from pip_module_scanner.scanner import Scanner, ScannerException
-    
-    try:
-       scanner = Scanner(path="~/projects/my-awesome-project/")
-       scanner.run()
-       
-       # do whatever you want with the results here
-       # example:
-       for lib in scanner.libraries_found:
-           print ("Found module %s at version %s" % (lib.key, lib.version))
-       
-    except ScannerException as e:
-        print("Error: %s" % str(e))
-        
+```python
+from pip_module_scanner.scanner import Scanner, ScannerException
+
+try:
+   scanner = Scanner(path="~/projects/my-awesome-project/")
+   scanner.run()
+   
+   # do whatever you want with the results here
+   # example:
+   for lib in scanner.libraries_found:
+       print ("Found module %s at version %s" % (lib.key, lib.version))
+   
+except ScannerException as e:
+    print("Error: %s" % str(e))
+```
+
 For the one-liner junkies out there (like me) you can also get all libraries with this nifty little one-liner (I'm so considerate)
 
-    from pip_module_scanner.scanner import Scanner
+```python
+from pip_module_scanner.scanner import Scanner
 
-    libs = Scanner().run().libraries_found # Isn't it beautiful?
-        
+libs = Scanner().run().libraries_found # Isn't it beautiful?
+```
+
 ## Class definitions
 
 ### pip_module_scanner.scanner.Scanner([string path [, string output]])
