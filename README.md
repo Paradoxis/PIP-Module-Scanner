@@ -32,7 +32,7 @@ baz==0.0.1
 ### Writing the output to a file
 You can write the output of the script to a file by using the `-o` or `--out` argument. Example:
 
-```python
+```shell
 $ cd ~/projects/my-awesome-project/
 $ pip-module-scanner -o requirements.txt
 $ cat requirements.txt
