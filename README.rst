@@ -1,4 +1,5 @@
-# Python-Third-Party-Module-Scanner
+Python-Third-Party-Module-Scanner
+================================
 Scans your Python project for all installed third party pip libraries and generates a requirements.txt based output.
 
 # Installation
@@ -7,7 +8,8 @@ Installing the scanner is easy, either clone the repository and run the script o
 $ pip install pip-module-scanner
 ```
 
-# Usage
+Usage
+-----
 Using the scanner is incredibly simple. Open a terminal and navigate to your project folder, run the script and watch magic happen before your eyes. Example:
 ```
 $ cd ~/projects/my-awesome-project/
@@ -17,7 +19,8 @@ bar==2.1.0
 baz==0.0.1
 ```
 
-### Specifying a custom path
+Specifying a custom path
+-----------------------
 You can specify a custom path in which you want to run the script with the `-p` or `--path` argument. Example:
 ```
 $ pip-module-scanner --path ~/projects/my-awesome-project/
@@ -26,7 +29,8 @@ bar==2.1.0
 baz==0.0.1
 ```
 
-### Writing the output to a file
+Writing the output to a file
+----------------------------
 You can write the output of the script to a file by using the `-o` or `--out` argument. Example:
 ```
 $ cd ~/projects/my-awesome-project/
@@ -37,7 +41,8 @@ bar==2.1.0
 baz==0.0.1
 ```
 
-# License
+License
+---------
 MIT License
 
 Copyright (c) 2016 Luke Paris
