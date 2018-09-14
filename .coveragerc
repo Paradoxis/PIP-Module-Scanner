@@ -1,0 +1,9 @@
+[report]
+omit =
+    pip_module_scanner/__main__.py
+    tests/*
+    venv/*
+exclude_lines =
+    def __repr__
+    if __name__ == .__main__.:
+    except ImportError.

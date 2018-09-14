@@ -1,7 +1,13 @@
 import os
 import re
 import sys
-import pip
+
+try:
+    from pip import get_installed_distributions # pip < 10
+except ImportError:
+    from pip._internal.utils.misc import get_installed_distributions  # pip >= 10
+
+from pip_module_scanner.exceptions import ScannerException
 
 
 class Scanner:
@@ -18,7 +24,7 @@ class Scanner:
 
         # List of pip distributions
         # Called once and then imported for performance
-        self.libraries_installed = pip.get_installed_distributions()
+        self.libraries_installed = get_installed_distributions()
         self.libraries_found = []
 
         # ArgumentParser options
@@ -97,10 +103,3 @@ class Scanner:
                     if found == installed.key:
                         self.libraries_installed.remove(installed)
                         self.libraries_found.append(installed)
-
-
-class ScannerException(Exception):
-    """
-    Custom exception type
-    Prevents ambiguity errors
-    """
