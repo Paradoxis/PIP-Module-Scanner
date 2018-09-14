@@ -14,3 +14,4 @@ script:
   - coverage run -m unittest tests
   - coverage report --show-missing
   - pip-module-scanner -p tests/project/
+  - codecov
