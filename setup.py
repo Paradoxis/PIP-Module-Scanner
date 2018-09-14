@@ -26,6 +26,7 @@ REQUIRES_PYTHON = '>=2.7.0'
 REQUIRED = []
 EXTRA = {
     'test': [
+        'codecov',
         'coverage',
         'requests==2.19.1',
         'flask==1.0.2'
