@@ -1,7 +1,7 @@
 # PIP Module Scanner
 [![Build Status](https://travis-ci.org/Paradoxis/PIP-Module-Scanner.svg?branch=master)](https://travis-ci.org/Paradoxis/PIP-Module-Scanner)
-[![Code Coverage](https://codecov.io/gh/Paradoxis/PIP-Module-Scanner/branch/master/graph/badge.svg)](https://codecov.io/gh/Paradoxis/PIP-Module-Scanner)
 [![PyPI version](https://badge.fury.io/py/pip-module-scanner.svg)](https://badge.fury.io/py/pip-module-scanner)
+[![Code Coverage](https://codecov.io/gh/Paradoxis/PIP-Module-Scanner/branch/master/graph/badge.svg)](https://codecov.io/gh/Paradoxis/PIP-Module-Scanner)
 
 Scans your Python project for all installed third party pip libraries that are used and generates a requirements.txt based output.
 
