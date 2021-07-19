@@ -20,7 +20,7 @@ class Scanner:
     def __init__(self, path=os.getcwd(), output=None):
 
         # Compiled import regular expression
-        self.import_statement = re.compile(r'(?:from|import) ([a-zA-Z0-9]+)(?:.*)')
+        self.import_statement = re.compile(r'(?:from|import) ([a-zA-Z0-9_]+)(?:.*)')
 
         # List of pip distributions
         # Called once and then imported for performance
