@@ -17,11 +17,21 @@ script:
   - pip-module-scanner -p tests/project/
   - codecov
 
-deploy:
-  provider: pypi
-  username: "__token__"
-  password:
-    secure: "nJsO8Qze8iDFiyJadgO6FxMFjn4/kxy0PwXnj4oV1tJ7+wJv1Rsm//sIPyM5k13avW/GjTp9s7UrzKC7og/SQgEYHkBgsXX+FYhCvE5SOyEEwujIFCm8rxrPAAh+FFJPrwmQ8Hqa8EDit14RP68vXbqHMzNHVlr/aOREzkJUBASSVFUF1NBMFosNl28pYvVyEgZriVTOBDkc0kMODa0SozN68noUysWkcuiK1SbgJ7u33M7+2i/MyJE2TZ3P0htBfsIhu2fgCKx8XYtfFWOdXxFuV+IH8SLv2Q+u3Qa1kEzwjBNRujHZvyS4wtIrMuWjW8qWDr8cKA7QaQEs0sN0I2f6rsNl6ezSkIf4Wv/GOB96Yi1LgCiO6FLCpRQW0fYNEgSMWXoYaq+BtvXDu1DcmqzVMgiUV1vOVonBGGccv1/bX3Q/C6OQ6f7tueNqDoKY121B54xOrvzn1/oq5dcy7X9PMmOfXMmxp2uIjmYd6lWifbPPnu9v5sktHEOO+miI5X92Eg7n5Oavvu9cSlhMVDmMwGF+8KpEoBuV3ppLa2qGosfuhwpJek2by2CxvP2iBDyhzu4O/R1DR6aNW5z98d2X+LgspVTNblk+aAaLkk3sz0MFa0AVhhDc9Ho+DVPIhj+Y6KztnVIkmPK3QZdMYHAGu2Z54d/ECb3B4COxVXA="
-  skip_existing: true
-  on:
-    tags: true
+stages:
+- test
+- deploy
+
+jobs:
+  include:
+    - stage: deploy
+      python: 3.6
+      install: skip
+      script: skip
+      deploy:
+        provider: pypi
+        username: "__token__"
+        password:
+          secure: "nJsO8Qze8iDFiyJadgO6FxMFjn4/kxy0PwXnj4oV1tJ7+wJv1Rsm//sIPyM5k13avW/GjTp9s7UrzKC7og/SQgEYHkBgsXX+FYhCvE5SOyEEwujIFCm8rxrPAAh+FFJPrwmQ8Hqa8EDit14RP68vXbqHMzNHVlr/aOREzkJUBASSVFUF1NBMFosNl28pYvVyEgZriVTOBDkc0kMODa0SozN68noUysWkcuiK1SbgJ7u33M7+2i/MyJE2TZ3P0htBfsIhu2fgCKx8XYtfFWOdXxFuV+IH8SLv2Q+u3Qa1kEzwjBNRujHZvyS4wtIrMuWjW8qWDr8cKA7QaQEs0sN0I2f6rsNl6ezSkIf4Wv/GOB96Yi1LgCiO6FLCpRQW0fYNEgSMWXoYaq+BtvXDu1DcmqzVMgiUV1vOVonBGGccv1/bX3Q/C6OQ6f7tueNqDoKY121B54xOrvzn1/oq5dcy7X9PMmOfXMmxp2uIjmYd6lWifbPPnu9v5sktHEOO+miI5X92Eg7n5Oavvu9cSlhMVDmMwGF+8KpEoBuV3ppLa2qGosfuhwpJek2by2CxvP2iBDyhzu4O/R1DR6aNW5z98d2X+LgspVTNblk+aAaLkk3sz0MFa0AVhhDc9Ho+DVPIhj+Y6KztnVIkmPK3QZdMYHAGu2Z54d/ECb3B4COxVXA="
+        skip_existing: true
+        on:
+          tags: true
