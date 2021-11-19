@@ -86,7 +86,7 @@ class Scanner:
         :param file_name:
         :return: void
         """
-        with open(os.path.join(path, file_name), "r") as script:
+        with open(os.path.join(path, file_name), "r", encoding='utf-8') as script:
             self.search_script(script.read())
 
     def search_script(self, script):
