@@ -109,7 +109,7 @@ setup(
     author_email=EMAIL,
     python_requires=REQUIRES_PYTHON,
     url=URL,
-    packages=['flask_unsign'],
+    packages=[NAME.replace('-', '_')],
     entry_points={
         'console_scripts': ['pip-module-scanner=pip_module_scanner.__main__:main'],
     },
