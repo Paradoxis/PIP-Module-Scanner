@@ -5,7 +5,12 @@ import sys
 try:
     from pip import get_installed_distributions # pip < 10
 except ImportError:
-    from pip._internal.utils.misc import get_installed_distributions  # pip >= 10
+    try:
+        from pip._internal.utils.misc import get_installed_distributions  # pip >= 10
+    except ImportError:
+        import pkg_resources    # pip >= 21.3
+        def get_installed_distributions():
+            return [d for d in pkg_resources.working_set]
 
 from pip_module_scanner.exceptions import ScannerException
 
