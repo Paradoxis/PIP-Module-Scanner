@@ -10,7 +10,7 @@ import os
 import sys
 from shutil import rmtree
 
-from setuptools import find_packages, setup, Command
+from setuptools import setup, Command
 
 NAME = 'pip-module-scanner'
 
@@ -109,7 +109,7 @@ setup(
     author_email=EMAIL,
     python_requires=REQUIRES_PYTHON,
     url=URL,
-    packages=find_packages(exclude=('tests',)),
+    packages=['flask_unsign'],
     entry_points={
         'console_scripts': ['pip-module-scanner=pip_module_scanner.__main__:main'],
     },
